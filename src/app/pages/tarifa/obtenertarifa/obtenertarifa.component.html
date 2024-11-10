@@ -1,0 +1,75 @@
+<!-- 
+<body>
+  <div class="tarifas-container">
+    <h2>Lista de tarifas</h2>
+    <table class="tarifas-table">
+        <thead>
+            <tr>
+              <th class="text-center">ID</th>
+              <th class="text-center">Tarifa por hora automóvil</th>
+              <th class="text-center">Tarifa por hora motocicleta</th>
+            </tr>
+        </thead>
+        <tbody>
+          @for (tarifa of tarifas; track tarifa.idTarifa){
+            <tr>
+              <td class="text-center">{{ tarifa?.idTarifa }}</td>
+              <td class="text-center">{{ tarifa?.costoHoraAutomovil|currency }}</td>
+              <td class="text-center">{{ tarifa?.costoHoraMotocicleta|currency }}</td>
+                <td class="action-buttons">
+
+                    <button class="actualizar-btn"[routerLink]="['/actualizar']">Actualizar</button>
+                    <button class="nuevo-btn" [routerLink]="['/registrar']">Registrar nuevo</button>
+                    <button class="eliminar-btn">Eliminar</button>
+                </td>
+            </tr>
+
+          }
+          @empty {
+            <tr>
+              <td class="text-center" colspan="3">No hay tarifas registradas</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+</body> -->
+  
+
+<body>
+    <div class="tarifas-container">
+      <h2><i class="fa-solid fa-book"></i> Lista de tarifas</h2>
+      <!-- Botón de registrar nuevo fuera de la tabla -->
+      <button class="nuevo-btn" [routerLink]="['/tarifa/registrartarifa']"><i class="fa-solid fa-plus"></i> Registrar nuevo</button>
+  
+      <table class="tarifas-table">
+          <thead>
+              <tr>
+                  <th class="text-center bg-dark">ID</th>
+                  <th class="text-center bg-dark">Tarifa por hora automóvil</th>
+                  <th class="text-center bg-dark">Tarifa por hora motocicleta</th>
+                  <th class="text-center bg-dark">Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              @for (tarifa of tarifas; track tarifa.idTarifa) {
+                  <tr>
+                      <td class="text-center">{{ tarifa?.idTarifa }}</td>
+                      <td class="text-center">{{ tarifa?.costoHoraAutomovil | currency }}</td>
+                      <td class="text-center">{{ tarifa?.costoHoraMotocicleta | currency }}</td>
+                      <td class="action-buttons">
+                          <button class="actualizar-btn"[routerLink]="['/tarifa/actualizartarifa', tarifa.idTarifa]"><i class="fa-solid fa-pencil"></i> Editar</button>
+                          <button class="eliminar-btn" (click)="onDeleteTarifa(tarifa.idTarifa)"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                      </td>
+                  </tr>
+              }
+              @empty {
+                  <tr>
+                      <td class="text-center" colspan="4">No hay tarifas registradas</td>
+                  </tr>
+              }
+          </tbody>
+      </table>
+  </div>
+  
+  </body>

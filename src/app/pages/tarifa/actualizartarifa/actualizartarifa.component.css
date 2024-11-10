@@ -1,0 +1,50 @@
+.container {
+    max-width: 600px; /* Máxima anchura del contenedor */
+    margin: 20px auto; /* Centrar horizontalmente con margen superior */
+    padding: 20px; /* Espacio interno */
+    background-color: #ffffff; /* Color de fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+h2 {
+    text-align: center; /* Centrar el título */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Espacio entre campos */
+}
+
+label {
+    display: block; /* Hacer que las etiquetas ocupen el ancho completo */
+    margin-bottom: 5px; /* Espacio inferior de etiquetas */
+}
+
+input[type="number"] {
+    width: 100%; /* Ancho completo del campo de entrada */
+    padding: 10px; /* Espacio interno del campo */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+button {
+    width: 100%; /* Ancho completo del botón */
+    padding: 10px; /* Espacio interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #2980b9; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+.cancelar{
+    background-color: #e74c3c;
+}
+.cancelar:hover{
+    background-color: #c0392b;
+}
+
+button:hover {
+    background-color: #1f6b93; /* Color de fondo al pasar el mouse */
+}

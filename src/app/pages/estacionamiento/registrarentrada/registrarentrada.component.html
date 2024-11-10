@@ -1,0 +1,123 @@
+<div class="container">
+    <h2>Registro de Entrada</h2>
+    <form (ngSubmit)="onSubmit()" #registroForm="ngForm">
+      <div class="form-group">
+        <label for="tipoVehiculo">Tipo de Vehículo:</label>
+        <select
+          id="tipoVehiculo"
+          name="tipoVehiculo"
+          [(ngModel)]="tipoVehiculo"
+          required
+          (change)="onTipoVehiculoChange()"
+        >
+          <option value="automovil">Automóvil</option>
+          <option value="motocicleta">Motocicleta</option>
+        </select>
+</div>
+      <!-- Campo Condicional: Número de Puertas para Automóvil -->
+      @if (tipoVehiculo === 'automovil') {
+        
+        <div class="form-group">
+        
+            <label for="numPuertas">Número de Puertas:</label>
+            <input
+              type="number"
+              id="numPuertas"
+              name="numPuertas"
+              [(ngModel)]="registro.numPuertas"
+              required
+              class="form-control"
+            />
+          </div>
+      }@else {
+        <div class="form-group">
+            <label for="tieneCasco">¿Tiene Casco?</label>
+            <select id="tieneCasco" name="tieneCasco" [(ngModel)]="registro.tieneCasco" required>
+              <option value="true">Sí</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+      }
+      
+  
+      <div class="form-group">
+        <label for="modelo">Modelo:</label>
+        <input
+          type="text"
+          id="modelo"
+          name="modelo"
+          [(ngModel)]="registro.modelo"
+          required
+          class="form-control"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="placa">Placa:</label>
+        <input
+          type="text"
+          id="placa"
+          name="placa"
+          [(ngModel)]="registro.placa"
+          required
+          class="form-control"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="color">Color:</label>
+        <input
+          type="text"
+          id="color"
+          name="color"
+          [(ngModel)]="registro.color"
+          required
+          class="form-control"
+        />
+      </div>
+  
+      
+      
+  
+      
+  
+      <div class="form-group">
+        <label for="nombreConductor">Nombre del Conductor:</label>
+        <input
+          type="text"
+          id="nombreConductor"
+          name="nombreConductor"
+          [(ngModel)]="registro.nombreConductor"
+          required
+          class="form-control"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="telefonoConductor">Teléfono del Conductor:</label>
+        <input
+          type="text"
+          id="telefonoConductor"
+          name="telefonoConductor"
+          [(ngModel)]="registro.telefonoConductor"
+          required
+          class="form-control"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="numEspacio">Número de Espacio:</label>
+        <input
+          type="number"
+          id="numEspacio"
+          name="numEspacio"
+          [(ngModel)]="registro.numEspacio"
+          required
+          class="form-control"
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!registroForm.form.valid">Registrar Entrada</button>
+    </form>
+  </div>
+  

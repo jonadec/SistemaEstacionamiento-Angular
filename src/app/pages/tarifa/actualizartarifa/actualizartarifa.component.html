@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Actualizar Tarifa</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="idTarifa">ID de la Tarifa:</label>
+            <input type="number" id="idTarifa" [(ngModel)]="tarifa.idTarifa" name="idTarifa" readonly>
+        </div>
+        <div class="form-group">
+            <label for="costoHoraAutomovil">Costo por Hora (Automóvil):</label>
+            <input type="number" id="costoHoraAutomovil" [(ngModel)]="tarifa.costoHoraAutomovil" name="costoHoraAutomovil" step="0.1" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="costoHoraMotocicleta">Costo por Hora (Motocicleta):</label>
+            <input type="number" id="costoHoraMotocicleta" [(ngModel)]="tarifa.costoHoraMotocicleta" name="costoHoraMotocicleta" step="0.1" min="0" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Actualizar Tarifa</button>
+        </div>
+        <div class="form-group">
+            <button class="cancelar" type="submit" [routerLink]="['/tarifa/obtenertarifa']">Cancelar</button>
+        </div>
+    </form>
+</div>

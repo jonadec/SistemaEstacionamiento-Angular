@@ -1,0 +1,41 @@
+<body>
+    <div class="tarifas-container">
+      <h2><i class="fa-solid fa-car"></i> Registros</h2>
+      <!-- Botón de registrar nuevo fuera de la tabla -->
+      <button class="nuevo-btn" [routerLink]="['/estacionamiento/registrarentrada']"><i class="fa-solid fa-plus"></i> Registrar nuevo</button>
+  
+      <table class="tarifas-table">
+          <thead>
+              <tr>
+                  <th class="text-center bg-dark">ID</th>
+                  <th class="text-center bg-dark">Vehiculo</th>
+                  <th class="text-center bg-dark">Modelo</th>
+                  <th class="text-center bg-dark">Placa</th>
+                  <th class="text-center bg-dark">Entrada</th>
+                  <th class="text-center bg-dark">Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              @for (ticket of tickets; track ticket.idTicket) {
+                  <tr>
+                      <td class="text-center">{{ ticket?.idTicket }}</td>
+                      <td class="text-center">{{ ticket?.vehiculo?.tipo}}</td>
+                      <td class="text-center">{{ ticket?.vehiculo?.modelo}}</td>
+                      <td class="text-center">{{ ticket?.vehiculo?.placa  }}</td>
+                      <td class="text-center">{{ ticket?.entrada}}</td>
+                      <td class="action-buttons">
+                          <button class="actualizar-btn"[routerLink]="['/tarifa/actualizartarifa', ticket.idTicket]"><i class="fa-solid fa-pencil"></i> Editar</button>
+                          <button class="salidar-btn"><i class="fa-solid fa-"></i> Salida</button>
+                          <button class="eliminar-btn"><i class="fa-solid fa-trash"></i> Eliminar</button> 
+                      </td>
+                  </tr>
+              }
+              @empty {
+                  <tr>
+                      <td class="text-center" colspan="4">No hay registros aún</td>
+                  </tr>
+              }
+          </tbody>
+      </table>
+  </div>
+  </body>
