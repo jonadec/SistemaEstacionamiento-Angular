@@ -7,6 +7,7 @@ import { ListaregistrosComponent } from './pages/estacionamiento/listaregistros/
 import { RegistrarentradaComponent } from './pages/estacionamiento/registrarentrada/registrarentrada.component';
 import { ActualizarregistroComponent } from './pages/estacionamiento/actualizarregistro/actualizarregistro.component';
 import { TicketentradaComponent } from './pages/estacionamiento/ticketentrada/ticketentrada.component';
+import { TicketsalidaComponent } from './pages/estacionamiento/ticketsalida/ticketsalida.component';
 
 
 export const routes: Routes = [
@@ -44,6 +45,10 @@ export const routes: Routes = [
     {
         path:'estacionamiento/ticketentrada/:id',
         component:TicketentradaComponent
+    },
+    {
+        path:'estacionamiento/ticketsalida/:id',
+        component:TicketsalidaComponent
     },
     {
         path: '**',

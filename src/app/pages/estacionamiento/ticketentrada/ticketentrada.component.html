@@ -5,6 +5,10 @@
     <h6 class="text-center">Estacionamiento Antequera</h6>
     <hr />
     <div class="row">
+      <div class="col-6"><strong>Folio:</strong></div>
+      <div class="col-6 text-end">{{ ticket.idTicket }}</div>
+    </div>
+    <div class="row">
       <div class="col-6"><strong>Placa:</strong></div>
       <div class="col-6 text-end">{{ ticket.vehiculo.placa }}</div>
     </div>
@@ -46,12 +50,12 @@
     </button>
 
     <!-- Botón para imprimir -->
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" (click)="imprimirTicket()">
       <i class="fa-solid fa-print"></i> Imprimir
     </button>
 
     <!-- Botón para ticket de salida -->
-    <button class="btn btn-success" [routerLink]="['/estacionamiento/ticketsalida', ticket.idTicket]">
+    <button class="btn btn-success"[routerLink]="['/estacionamiento/ticketsalida', ticket.idTicket]">
       <i class="fa-solid fa-sign-out-alt"></i> Ticket de salida
     </button>
   </div>

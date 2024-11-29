@@ -17,6 +17,7 @@ export class TicketentradaComponent implements OnInit {
   private _router = inject(Router);
   private _route = inject(ActivatedRoute);
   ticket: any = {
+    idTicket: null,
     entrada: '',
     vehiculo: {
       placa: '',
@@ -54,6 +55,7 @@ export class TicketentradaComponent implements OnInit {
       next: (response) => {
         console.log('Datos del ticket recibidos:', response);
         this.ticket = response.data; // Acceso a los datos del ticket
+        this.ticket.idTicket=response.data.idTicket;
       },
       error: (error) => {
         console.error('Error al cargar el ticket:', error);
@@ -65,6 +67,10 @@ export class TicketentradaComponent implements OnInit {
         this._router.navigate(['/estacionamiento/listaregistros']);
       }
     });
+  }
+  
+  imprimirTicket(): void {
+    window.print();  // Llama a la función de impresión del navegador
   }
 
 }
