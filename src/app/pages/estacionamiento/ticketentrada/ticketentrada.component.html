@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <!-- Ticket de entrada -->
+  <div class="ticket-container p-4 border rounded shadow-sm">
+    <h3 class="text-center">Ticket de Entrada</h3>
+    <h6 class="text-center">Estacionamiento Antequera</h6>
+    <hr />
+    <div class="row">
+      <div class="col-6"><strong>Placa:</strong></div>
+      <div class="col-6 text-end">{{ ticket.vehiculo.placa }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6"><strong>Tipo de Vehículo:</strong></div>
+      <div class="col-6 text-end">{{ ticket.vehiculo.tipo }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6"><strong>Modelo:</strong></div>
+      <div class="col-6 text-end">{{ ticket.vehiculo.modelo }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6"><strong>Color:</strong></div>
+      <div class="col-6 text-end">{{ ticket.vehiculo.color }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6"><strong>Entrada:</strong></div>
+      <div class="col-6 text-end">{{ ticket.entrada | date: 'short' }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6"><strong>Costo por Hora:</strong></div>
+      @if (ticket.vehiculo.tipo==='Automovil') {
+        <div class="col-6 text-end">{{ ticket.tarifa.costoHoraAutomovil | currency }}</div>
+      }
+      @else if (ticket.vehiculo.tipo==='Motocicleta') {
+        <div class="col-6 text-end">{{ ticket.tarifa.costoHoraMotocicleta | currency }}</div>
+      }
+      
+    </div>
+    <hr />
+    <p class="text-center">Gracias por usar nuestro estacionamiento</p>
+  </div>
+
+  <!-- Botones -->
+  <div class="d-flex justify-content-between mt-4">
+    <!-- Botón para regresar -->
+    <button class="btn btn-secondary" [routerLink]="['/estacionamiento/listaregistros']">
+      <i class="fa-solid fa-arrow-left"></i> Regresar
+    </button>
+
+    <!-- Botón para imprimir -->
+    <button class="btn btn-primary">
+      <i class="fa-solid fa-print"></i> Imprimir
+    </button>
+
+    <!-- Botón para ticket de salida -->
+    <button class="btn btn-success" [routerLink]="['/estacionamiento/ticketsalida', ticket.idTicket]">
+      <i class="fa-solid fa-sign-out-alt"></i> Ticket de salida
+    </button>
+  </div>
+</div>

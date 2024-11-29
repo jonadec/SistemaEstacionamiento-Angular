@@ -5,6 +5,8 @@ import { RegistrartarifaComponent } from './pages/tarifa/registrartarifa/registr
 import { ActualizartarifaComponent } from './pages/tarifa/actualizartarifa/actualizartarifa.component';
 import { ListaregistrosComponent } from './pages/estacionamiento/listaregistros/listaregistros.component';
 import { RegistrarentradaComponent } from './pages/estacionamiento/registrarentrada/registrarentrada.component';
+import { ActualizarregistroComponent } from './pages/estacionamiento/actualizarregistro/actualizarregistro.component';
+import { TicketentradaComponent } from './pages/estacionamiento/ticketentrada/ticketentrada.component';
 
 
 export const routes: Routes = [
@@ -34,6 +36,14 @@ export const routes: Routes = [
     {
         path:'estacionamiento/registrarentrada',
         component:RegistrarentradaComponent
+    },
+    {
+        path:'estacionamiento/actualizarregistro/:id',
+        component:ActualizarregistroComponent
+    },
+    {
+        path:'estacionamiento/ticketentrada/:id',
+        component:TicketentradaComponent
     },
     {
         path: '**',

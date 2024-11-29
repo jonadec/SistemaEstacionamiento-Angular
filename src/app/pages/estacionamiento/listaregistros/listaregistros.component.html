@@ -3,7 +3,8 @@
       <h2><i class="fa-solid fa-car"></i> Registros</h2>
       <!-- Botón de registrar nuevo fuera de la tabla -->
       <button class="nuevo-btn" [routerLink]="['/estacionamiento/registrarentrada']"><i class="fa-solid fa-plus"></i> Registrar nuevo</button>
-  
+     
+
       <table class="tarifas-table">
           <thead>
               <tr>
@@ -16,26 +17,28 @@
               </tr>
           </thead>
           <tbody>
-              @for (ticket of tickets; track ticket.idTicket) {
-                  <tr>
+              <!-- @for (ticket of tickets; track ticket.idTicket | paginate: { itemsPerPage: 4, currentPage: page }) { -->
+              <tr *ngFor="let ticket of (tickets | paginate: { itemsPerPage: 4, currentPage: page }); trackBy: trackByTicketId">
                       <td class="text-center">{{ ticket?.idTicket }}</td>
                       <td class="text-center">{{ ticket?.vehiculo?.tipo}}</td>
                       <td class="text-center">{{ ticket?.vehiculo?.modelo}}</td>
                       <td class="text-center">{{ ticket?.vehiculo?.placa  }}</td>
-                      <td class="text-center">{{ ticket?.entrada}}</td>
+                      <td class="text-center">{{ ticket?.entrada| date: 'HH:mm'}}</td>
                       <td class="action-buttons">
-                          <button class="actualizar-btn"[routerLink]="['/tarifa/actualizartarifa', ticket.idTicket]"><i class="fa-solid fa-pencil"></i> Editar</button>
-                          <button class="salidar-btn"><i class="fa-solid fa-"></i> Salida</button>
-                          <button class="eliminar-btn"><i class="fa-solid fa-trash"></i> Eliminar</button> 
+                          <button class="actualizar-btn"[routerLink]="['/estacionamiento/actualizarregistro', ticket.idTicket]"><i class="fa-solid fa-pencil"></i> Editar</button>
+                          <button class="salida-btn" [routerLink]="['/estacionamiento/ticketentrada', ticket.idTicket]"><i class="fa-solid fa-"></i> Ticket</button>
+                          <button class="eliminar-btn" (click)="onDeleteTicket(ticket?.idTicket)"><i class="fa-solid fa-trash"></i> Eliminar</button> 
                       </td>
                   </tr>
-              }
+              <!-- }
               @empty {
                   <tr>
                       <td class="text-center" colspan="4">No hay registros aún</td>
                   </tr>
-              }
+              } -->
           </tbody>
       </table>
+     <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      
   </div>
   </body>

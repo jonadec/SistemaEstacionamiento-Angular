@@ -1,0 +1,73 @@
+<div class="container">
+    <h2>Actualizar Registro</h2>
+    <form (ngSubmit)="actualizarRegistro()">
+      <div class="row">
+        <!-- Primera columna (Izquierda) -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <input type="text" id="tipo" [(ngModel)]="registro.vehiculo.tipo" name="tipo" class="form-control" required>
+          </div>
+        </div>
+  
+        <!-- Segunda columna (Derecha) -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" [(ngModel)]="registro.vehiculo.modelo" name="modelo" class="form-control" required>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <!-- Primera columna (Izquierda) -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="placa">Placa</label>
+            <input type="text" id="placa" [(ngModel)]="registro.vehiculo.placa" name="placa" class="form-control" required>
+          </div>
+        </div>
+  
+        <!-- Segunda columna (Derecha) -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="color">Color</label>
+            <input type="text" id="color" [(ngModel)]="registro.vehiculo.color" name="color" class="form-control" required>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <!-- Primera columna (Izquierda) -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="entrada">Entrada</label>
+            <input type="datetime-local" id="entrada" [(ngModel)]="registro.entrada" name="entrada" class="form-control" required>
+          </div>
+        </div>
+  
+        <!-- Segunda columna (Derecha) -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="conductornombre">Nombre del conductor</label>
+            <input type="text" id="conductornombre" [(ngModel)]="registro.vehiculo.conductor.nombre" name="conductornombre" class="form-control" required>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <!-- Primera columna (Izquierda) -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="conductortelefono">Teléfono del conductor</label>
+            <input type="text" id="conductortelefono" [(ngModel)]="registro.vehiculo.conductor.telefono" name="conductortelefono" class="form-control" required>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Botones de acción -->
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+      <button type="button" class="btn btn-danger" [routerLink]="['/estacionamiento/listaregistros']">Cancelar</button>
+    </form>
+  </div>
+  
