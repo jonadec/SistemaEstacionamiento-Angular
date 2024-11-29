@@ -23,4 +23,7 @@ export class EstacionamientoService {
   deleteTicketById(id: number) {
     return this._http.delete(`${APIURL}ticket/${id}/borrar`);
   }
+  getEspacios() {
+    return this._http.get(APIURL+'espacios/registros')
+  }
 }

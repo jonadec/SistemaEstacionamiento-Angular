@@ -28,7 +28,8 @@ export class ListaregistrosComponent {
   getTickets() {
     // Carga todos los registros desde el servicio
     this._estacionamientoService.getTickets().subscribe((data: any) => {
-      this.tickets = data;
+      // this.tickets = data;
+      this.tickets = data.filter((ticket: any) => !ticket.salida);
       console.log(this.tickets);
     });
   }

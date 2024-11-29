@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { EstacionamientoService } from '../../../services/estacionamiento.service';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registrarentrada',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './registrarentrada.component.html',
   styleUrl: './registrarentrada.component.css'
 })
@@ -31,7 +32,10 @@ export class RegistrarentradaComponent {
       }
     },
     espacio: {
-      idEspacio: null
+      idEspacio: null,
+      "numero": null,
+      "tipo": "",
+      "disponible": true
     },
     tarifa: {
       idTarifa: 1
@@ -40,6 +44,27 @@ export class RegistrarentradaComponent {
       id: 1 
     }
   };
+  espaciosDisponibles: any[] = []; // Lista de espacios disponibles
+
+  ngOnInit() {
+    this.cargarEspacios();
+  }
+
+  cargarEspacios() {
+    this._registroService.getEspacios().subscribe(
+      (espacios) => {
+        // Filtrar espacios disponibles
+        if (Array.isArray(espacios)) {
+          this.espaciosDisponibles = espacios.filter((espacio: any) => espacio.disponible);
+        } else {
+          console.error('Error: espacios no es un arreglo', espacios);
+        }
+      },
+      (error) => {
+        console.error('Error cargando los espacios:', error);
+      }
+    );
+  }
   
   onTipoVehiculoChange() {
     if (this.tipoVehiculo === 'automovil') {

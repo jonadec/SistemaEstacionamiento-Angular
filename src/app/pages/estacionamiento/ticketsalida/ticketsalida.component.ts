@@ -47,7 +47,7 @@ export class TicketsalidaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const id = +this._route.snapshot.paramMap.get('idTicket')!;
+    const id = +this._route.snapshot.paramMap.get('id')!;
     this.loadTicket(id);
   }
 
@@ -79,10 +79,17 @@ export class TicketsalidaComponent implements OnInit {
     const tiempoEstacionado = (horaSalida.getTime() - horaEntrada.getTime()) / (1000 * 3600);
     if(this.ticket.vehiculo.tipo === 'Motocicleta' ) {
       this.costoTotal = tiempoEstacionado * this.ticket.tarifa.costoHoraMotocicleta;
+      if(this.costoTotal < this.ticket.tarifa.costoHoraMotocicleta) {
+        this.costoTotal = this.ticket.tarifa.costoHoraMotocicleta;
+      }
     } 
     else if(this.ticket.vehiculo.tipo === 'Automovil') {
       this.costoTotal = tiempoEstacionado * this.ticket.tarifa.costoHoraAutomovil;
+      if(this.costoTotal < this.ticket.tarifa.costoHoraAutomovil) {
+        this.costoTotal = this.ticket.tarifa.costoHoraAutomovil;
+      }
     } 
+    
   }
 
   // Registrar la salida del vehículo
