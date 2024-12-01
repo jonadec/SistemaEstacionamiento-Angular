@@ -21,11 +21,11 @@
         <div class="col-6 text-end">{{ ticket.vehiculo.color }}</div>
       </div>
       <div class="row">
-        <div class="col-6"><strong>Entrada:</strong></div>
+        <div class="col-6"><strong>Fecha de Entrada:</strong></div>
         <div class="col-6 text-end">{{ ticket.entrada | date: 'short' }}</div>
       </div>
       <div class="row">
-        <div class="col-6"><strong>Hora de Salida:</strong></div>
+        <div class="col-6"><strong>Fecha de Salida:</strong></div>
         <div class="col-6 text-end">{{ ticket.salida | date: 'short' }}</div>
       </div>
       <div class="row">
@@ -38,7 +38,7 @@
           }
       </div>
       <div class="row">
-        <div class="col-6"><strong>Costo Total:</strong></div>
+        <div class="col-6"><strong>Total Pagado:</strong></div>
         <div class="col-6 text-end">{{ ticket.costoTotal | currency }}</div>
       </div>
       <hr />
