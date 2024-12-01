@@ -20,6 +20,7 @@ export class TicketsalidaComponent implements OnInit {
     idTicket: null,
     entrada: '',
     salida: '',
+    costoTotal: null,
     vehiculo: {
       placa: '',
       tipo: '',
@@ -33,7 +34,7 @@ export class TicketsalidaComponent implements OnInit {
       }
     },
     espacio: {
-      idEspacio: null
+      idEspacio: null,
     },
     tarifa: {
       idTarifa: 1,
@@ -94,8 +95,10 @@ export class TicketsalidaComponent implements OnInit {
 
   // Registrar la salida del vehículo
   registrarSalida(): void {
+    this.ticket.costoTotal = this.costoTotal; 
     this._estacionamientoService.updateTicket(this.ticket).subscribe({
       next: (response) => {
+        
         Swal.fire({
           title: 'Ticket de salida registrado',
           text: 'Gracias por usar nuestros servicios',

@@ -1,9 +1,9 @@
 <body>
     <div class="tarifas-container">
-      <h2><i class="fa-solid fa-car"></i> Registros</h2>
+      <h2><i class="fa-solid fa-car"></i> Registros Activos</h2>
       <!-- Botón de registrar nuevo fuera de la tabla -->
       <button class="nuevo-btn" [routerLink]="['/estacionamiento/registrarentrada']"><i class="fa-solid fa-plus"></i> Registrar nuevo</button>
-     
+      <button class="past-btn" [routerLink]="['/estacionamiento/registrospasados']"><i class="fa-solid fa-list"></i> Registros Pasados</button>
 
       <table class="tarifas-table">
           <thead>
@@ -26,7 +26,7 @@
                       <td class="text-center">{{ ticket?.entrada| date: 'HH:mm'}}</td>
                       <td class="action-buttons">
                           <button class="actualizar-btn"[routerLink]="['/estacionamiento/actualizarregistro', ticket.idTicket]"><i class="fa-solid fa-pencil"></i> Editar</button>
-                          <button class="salida-btn" [routerLink]="['/estacionamiento/ticketentrada', ticket.idTicket]"><i class="fa-solid fa-"></i> Ticket</button>
+                          <button class="salida-btn" [routerLink]="['/estacionamiento/ticketentrada', ticket.idTicket]"><i class="fa-solid fa-ticket"></i> Ticket</button>
                           <button class="eliminar-btn" (click)="onDeleteTicket(ticket?.idTicket)"><i class="fa-solid fa-trash"></i> Eliminar</button> 
                       </td>
                   </tr>

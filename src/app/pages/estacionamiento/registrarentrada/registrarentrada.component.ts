@@ -18,24 +18,24 @@ export class RegistrarentradaComponent {
   private _router = inject(Router);
 
   registro = {
-    entrada: '', // Se asignará en el `onSubmit` o al inicializar
+    entrada: '', 
     vehiculo: {
       placa: '',
-      tipo: this.tipoVehiculo, // "Automóvil" o "Motocicleta"
+      tipo: this.tipoVehiculo,
       modelo: '',
-      tieneCasco: null, // true o false, según el tipo de vehículo
+      tieneCasco: null, 
       color: '',
-      numeroPuertas: null, // Solo para automóviles
+      numeroPuertas: null, 
       conductor: {
         nombre: '',
         telefono: ''
       }
     },
     espacio: {
-      idEspacio: null,
-      "numero": null,
-      "tipo": "",
-      "disponible": true
+      idEspacio: 0,
+      numero: null,
+      tipo: "",
+      disponible: true
     },
     tarifa: {
       idTarifa: 1
@@ -44,7 +44,7 @@ export class RegistrarentradaComponent {
       id: 1 
     }
   };
-  espaciosDisponibles: any[] = []; // Lista de espacios disponibles
+  espaciosDisponibles: any[] = []; 
 
   ngOnInit() {
     this.cargarEspacios();
@@ -53,10 +53,10 @@ export class RegistrarentradaComponent {
   cargarEspacios() {
     this._registroService.getEspacios().subscribe(
       (espacios) => {
-        // Filtrar espacios disponibles
         if (Array.isArray(espacios)) {
           this.espaciosDisponibles = espacios.filter((espacio: any) => espacio.disponible);
-        } else {
+        } 
+        else {
           console.error('Error: espacios no es un arreglo', espacios);
         }
       },
@@ -77,12 +77,12 @@ export class RegistrarentradaComponent {
   }
 
   onSubmit() {
-    this.registro.entrada = new Date().toISOString(); // Asignar la fecha actual en formato ISO
-  
-    // Llamada al servicio para enviar los datos a la API
+     const horaEntrada= new Date();
+     this.registro.entrada = horaEntrada.toISOString(); 
     this._registroService.newTicket(this.registro).subscribe(
       response => {
         console.log('Registro de entrada:', this.registro);
+        this.actualizarEstadoEspacio(this.registro.espacio.idEspacio);
         Swal.fire({
           title: "¡Registro Exitoso!",
           text: "Se ha registrado la entrada del vehículo correctamente.",
@@ -99,6 +99,33 @@ export class RegistrarentradaComponent {
         });
       }
     );
+
   }
+  actualizarEstadoEspacio(idEspacio: number) {
+    const espacioSeleccionado = this.espaciosDisponibles.find(e => e.idEspacio === idEspacio);
+  
+    if (!espacioSeleccionado) {
+      console.error(`Espacio con id ${idEspacio} no encontrado en la lista.`);
+      return;
+    }
+  
+    const espacioActualizado = { 
+      ...espacioSeleccionado, 
+      disponible: false 
+    };
+  
+    console.log('Espacio que se enviará al backend:', espacioActualizado);
+  
+    this._registroService.updateEspacio(idEspacio, espacioActualizado).subscribe(
+      (response) => {
+        console.log('Espacio actualizado correctamente:', response);
+      },
+      (error) => {
+        console.error('Error actualizando el estado del espacio:', error);
+      }
+    );
+  }
+  
+
   
 }

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-const APIURL='http://localhost:8081/api/v1/';
-
+const APIURL='https://powerful-spire-52656-e4f5afd298e9.herokuapp.com/api/v1/'
 @Injectable({
   providedIn: 'root'
 })
@@ -25,5 +24,8 @@ export class EstacionamientoService {
   }
   getEspacios() {
     return this._http.get(APIURL+'espacios/registros')
+  }
+  updateEspacio(idEspacio: number, espacioData: any){
+    return this._http.put(APIURL + `espacios/${idEspacio}/actualizar`, espacioData);
   }
 }

@@ -1,0 +1,45 @@
+<body>
+  <div class="tarifas-container">
+    <h2><i class="fa-solid fa-car"></i> Registros Pasados</h2>
+    <button class="nuevo-btn" [routerLink]="['/estacionamiento/listaregistros']"><i class="fa-solid fa-list"></i> Registros Activos</button>
+  
+    <table class="tarifas-table">
+      <thead>
+        <tr>
+          <th class="text-center bg-dark">ID</th>
+          <th class="text-center bg-dark">Vehículo</th>
+          <th class="text-center bg-dark">Modelo</th>
+          <th class="text-center bg-dark">Placa</th>
+          <th class="text-center bg-dark">Entrada</th>
+          <th class="text-center bg-dark">Salida</th>
+          <th class="text-center bg-dark">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let ticket of (tickets | paginate: { itemsPerPage: 4, currentPage: page }); trackBy: trackByTicketId"
+        >
+          <td class="text-center">{{ ticket?.idTicket }}</td>
+          <td class="text-center">{{ ticket?.vehiculo?.tipo }}</td>
+          <td class="text-center">{{ ticket?.vehiculo?.modelo }}</td>
+          <td class="text-center">{{ ticket?.vehiculo?.placa }}</td>
+          <td class="text-center">{{ ticket?.entrada | date: 'HH:mm' }}</td>
+          <td class="text-center">{{ ticket?.salida | date: 'HH:mm' }}</td>
+          <td class="action-buttons">
+            <button
+              class="eliminar-btn"
+              (click)="onDeleteTicket(ticket?.idTicket)"
+            >
+              <i class="fa-solid fa-trash"></i> Eliminar
+            </button>
+            <button class="salida-btn" [routerLink]="['/estacionamiento/ticketpagado', ticket.idTicket]"><i class="fa-solid fa-ticket"></i> Ticket</button>
+          </td>
+        </tr>
+        <tr *ngIf="tickets.length === 0">
+          <td class="text-center" colspan="7">No hay registros con salida</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</body>
