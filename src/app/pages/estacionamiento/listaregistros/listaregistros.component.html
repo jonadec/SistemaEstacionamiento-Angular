@@ -8,8 +8,9 @@
       <table class="tarifas-table">
           <thead>
               <tr>
-                  <th class="text-center bg-dark">ID</th>
+                  
                   <th class="text-center bg-dark">Vehiculo</th>
+                  <th class="text-center bg-dark">Color</th>
                   <th class="text-center bg-dark">Modelo</th>
                   <th class="text-center bg-dark">Placa</th>
                   <th class="text-center bg-dark">Entrada</th>
@@ -19,8 +20,9 @@
           <tbody>
               <!-- @for (ticket of tickets; track ticket.idTicket | paginate: { itemsPerPage: 4, currentPage: page }) { -->
               <tr *ngFor="let ticket of (tickets | paginate: { itemsPerPage: 4, currentPage: page }); trackBy: trackByTicketId">
-                      <td class="text-center">{{ ticket?.idTicket }}</td>
+                      
                       <td class="text-center">{{ ticket?.vehiculo?.tipo}}</td>
+                      <td class="text-center">{{ ticket?.vehiculo?.color }}</td>
                       <td class="text-center">{{ ticket?.vehiculo?.modelo}}</td>
                       <td class="text-center">{{ ticket?.vehiculo?.placa  }}</td>
                       <td class="text-center">{{ ticket?.entrada| date: 'HH:mm'}}</td>
